@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="jquery.js"></script>
+		<style>
+			img{
+				position:absolute;
+				/*visibility:hidden;*/
+			}
+			svg{position:absolute;}
+			svg path.blue-filled-black-border{
+				stroke:blue;
+				stroke-width:1;
+				fill:blue;
+			}
+
+			svg .filled-mark-point{
+				fill:rgba(200,200,200,1);
+				stroke:rgba(200,200,200,1);
+				stroke-width:3;
+			}
+			svg .control-line{
+				fill:rgba(200,200,200,0);
+				stroke:rgba(200,200,200,1);
+				stroke-width:1;
+			}
+			svg .generated-curve{
+				fill:rgba(0,0,0,0);
+				stroke:#345;
+				stroke-width:3;
+			}
+			svg circle.control{
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+<!--
+	<img src="IMG_0029.jpg" alt="">-->
+	<svg id="svg1" xmlns="http://www.w3.org/2000/svg" version="1.1" height="700" width="960">
+		<!-- Mark relevant points -->
+	<!--
+		<g stroke="black" stroke-width="3" fill="black">
+			<circle id="point1" cx="100" cy="70" r="1" />
+			<circle id="point2" cx="145" cy="72" r="1" />
+			<circle id="point3" cx="232" cy="76" r="1" />
+			<circle id="point4" cx="285" cy="77" r="1" />
+			<circle id="point5" cx="325" cy="145" r="1" />
+			<circle id="point6" cx="294" cy="183" r="1" />
+			<circle id="point7" cx="264" cy="147" r="1" />
+			<circle id="point8" cx="257" cy="208" r="1" />
+			<circle id="point9" cx="258" cy="224" r="1" />
+			<circle id="point10" cx="358" cy="494" r="1" />
+			<circle id="point11" cx="246" cy="515" r="1" />
+			<circle id="point12" cx="243" cy="497" r="1" />
+			<circle id="point13" cx="211" cy="231" r="1" />
+			<circle id="point14" cx="193" cy="495" r="1" />
+			<circle id="point15" cx="190" cy="510" r="1" />
+			<circle id="point16" cx="85" cy="506" r="1" />
+			<circle id="point17" cx="148" cy="235" r="1" />
+			<circle id="point18" cx="148" cy="218" r="1" />
+			<circle id="point19" cx="132" cy="145" r="1" />
+			<circle id="point20" cx="104" cy="178" r="1" />
+			<circle id="point21" cx="64" cy="140" r="1" />
+			<circle id="point22" cx="102" cy="353" r="1" />
+		</g>
+	-->
+		<g stroke="black" stroke-width="3" fill="blue">
+			<circle id="point1" cx="761" cy="216" r="1" />
+			<circle id="point2" cx="758" cy="227" r="1" />
+			<circle id="point3" cx="723" cy="232" r="1" />
+			<circle id="point4" cx="285" cy="77" r="1" />
+			<circle id="point5" cx="325" cy="145" r="1" />
+			<circle id="point6" cx="294" cy="183" r="1" />
+			<circle id="point7" cx="264" cy="147" r="1" />
+			<circle id="point8" cx="257" cy="208" r="1" />
+			<circle id="point9" cx="258" cy="224" r="1" />
+			<circle id="point10" cx="358" cy="494" r="1" />
+			<circle id="point11" cx="246" cy="515" r="1" />
+			<circle id="point12" cx="243" cy="497" r="1" />
+			<circle id="point13" cx="211" cy="231" r="1" />
+			<circle id="point14" cx="193" cy="495" r="1" />
+			<circle id="point15" cx="190" cy="510" r="1" />
+			<circle id="point16" cx="85" cy="506" r="1" />
+			<circle id="point17" cx="148" cy="235" r="1" />
+			<circle id="point18" cx="148" cy="218" r="1" />
+			<circle id="point19" cx="132" cy="145" r="1" />
+			<circle id="point20" cx="104" cy="178" r="1" />
+			<circle id="point21" cx="64" cy="140" r="1" />
+			<circle id="point22" cx="102" cy="353" r="1" />
+		</g>
+	
+		<!-- Label the points -->
+		<g font-size="14" font="sans-serif" fill="black" stroke="none" text-anchor="end">
+			<text x="762" y="218" dy="-10">p1</text>
+			<text x="145" y="72" dy="-10">p2</text>
+			<text x="232" y="76" dy="-10">p3</text>
+			<text x="285" y="77" dy="-10">p4</text>
+			<text x="325" y="145" dy="-10">p5</text>
+			<text x="294" y="183" dy="-10">p6</text>
+			<text x="264" y="147" dy="-10">p7</text>
+			<text x="257" y="208" dy="-10">p8</text>
+			<text x="258" y="224" dy="-10">p9</text>
+			<text x="358" y="494" dy="-10">p10</text>
+			<text x="246" y="515" dy="-10">p11</text>
+			<text x="243" y="497" dy="-10">p12</text>
+			<text x="211" y="231" dy="-10">p13</text>
+			<text x="193" y="495" dy="-10">p14</text>
+			<text x="190" y="510" dy="-10">p15</text>
+			<text x="85" y="506" dy="-10">p16</text>
+			<text x="148" y="235" dy="-10">p17</text>
+			<text x="148" y="218" dy="-10">p18</text>
+			<text x="132" y="145" dy="-10">p19</text>
+			<text x="104" y="178" dy="-10">p20</text>
+			<text x="64" y="140" dy="-10">p21</text>
+			<text x="102" y="353" dy="-10">p22</text>
+		</g>
+
+		<!-- Label the points -->
+	<!--
+		<g font-size="14" font="sans-serif" fill="black" stroke="none" text-anchor="end">
+			<text x="100" y="70" dy="-10">p1</text>
+			<text x="145" y="72" dy="-10">p2</text>
+			<text x="232" y="76" dy="-10">p3</text>
+			<text x="285" y="77" dy="-10">p4</text>
+			<text x="325" y="145" dy="-10">p5</text>
+			<text x="294" y="183" dy="-10">p6</text>
+			<text x="264" y="147" dy="-10">p7</text>
+			<text x="257" y="208" dy="-10">p8</text>
+			<text x="258" y="224" dy="-10">p9</text>
+			<text x="358" y="494" dy="-10">p10</text>
+			<text x="246" y="515" dy="-10">p11</text>
+			<text x="243" y="497" dy="-10">p12</text>
+			<text x="211" y="231" dy="-10">p13</text>
+			<text x="193" y="495" dy="-10">p14</text>
+			<text x="190" y="510" dy="-10">p15</text>
+			<text x="85" y="506" dy="-10">p16</text>
+			<text x="148" y="235" dy="-10">p17</text>
+			<text x="148" y="218" dy="-10">p18</text>
+			<text x="132" y="145" dy="-10">p19</text>
+			<text x="104" y="178" dy="-10">p20</text>
+			<text x="64" y="140" dy="-10">p21</text>
+			<text x="102" y="353" dy="-10">p22</text>
+		</g>
+	-->
+	<!--
+		<path d="
+		M 100 70
+		L 145 72
+		Q 200 118 232 76
+		L 285 77
+		Q 320 99 325 145
+		L 294 183
+		Q 256 174 264 147		
+		L 257 208
+		
+		L 148 218
+		L 132 145
+		L 104 178
+		L 64 140
+		Q 75 92 100 70
+		Z"
+		 class="blue-filled-black-border"
+		/>
+		<path d="	
+		M 257 208
+		L 258 224
+		L 211 231
+		L 148 235
+		L 148 218
+		Z"
+		 class="blue-filled-black-border"
+		/>
+		<path d="	
+		M 258 224
+		Q 324 285 358 494
+		Q 326 509 246 515
+		L 243 497
+		Q 235 300 211 231
+		Z"
+		 class="blue-filled-black-border"
+		/>
+		<path d="
+		M 243 497
+		Q 235 300 211 231
+		Q 210 366 193 495
+		Z"
+		 stroke="black" stroke-width="1" fill="yellow"
+		/>
+		<path d="	
+		M 211 231
+		Q 210 366 193 495
+		L 190 510
+		L 85 506
+		Q 73 431 102 353
+		T 148 235
+		Z"
+		 class="blue-filled-black-border"
+		/>
+		
+		<path d="
+		M652 86 Q720 129 752 86
+		Q827 78 834 133
+		L807 175
+		Q788 168 772 150
+		Q774 189 762 218
+
+
+		"
+		 stroke="blue" stroke-width="2" fill="none"
+		/>
+-->
+			<path d="M807 175 Q350 150 500 250" class="generated-curve no2" id="path"/>
+			<circle cx=807 cy=175 r=3 class="filled-mark-point no2 control" id="control1"/>
+			<circle cx=350 cy=150 r=3 class="filled-mark-point no2 control" id="control2"/>
+			<circle cx=500 cy=250 r=3 class="filled-mark-point no2 control" id="control3"/>
+			<polyline points="807,175 350,150 500,250" class="control-line no2" id="polyline"/>
+			<text x="220" y="320" class="no2" id="text1">M200 250 Q350 150 500 250</text>
+			<text x="250" y="50">二次贝塞尔曲线控制</text>
+
+  	</svg> 
+	<script>
+	document.getElementById("svg1").onclick=function(e){
+		var left=this.offsetLeft;
+		var top=this.offsetTop;
+		console.log(
+			"------------------------------------------------\n"+
+	        "svg的偏移量：\n"+
+	        "offsetLeft = "+left+"\n"+
+	        "offsetTop = "+top+"\n\n"
+			);
+
+	    var eve = e || window.event;
+	    var x = eve.clientX,  // 相对于客户端的X坐标
+	        y = eve.clientY;  // 相对于客户端的Y坐标
+	        /*
+	         *  x1 = eve.screenX,  // 相对于计算机屏幕的X坐标
+	         *  y1 = eve.screenY;  // 相对于计算机屏幕的Y坐标
+	         */
+	    console.log(
+	        "鼠标相对客户端的坐标：\n"+
+	        "x = "+x+"\n"+
+	        "y = "+y+"\n\n"//+
+	        /*
+	         *  "相对屏幕的坐标：\n"+
+	         *  "x = "+x1+"\n"+
+	         *  "y = "+y1
+	         */
+	    );
+
+	    console.log(
+	        "鼠标相对svg1起点的坐标：\n"+
+	        "x(svg) = "+(x-left)+"\n"+
+	        "y(svg) = "+(y-top)+"\n\n"//+
+	        /*
+	         *  "相对屏幕的坐标：\n"+
+	         *  "x = "+x1+"\n"+
+	         *  "y = "+y1
+	         */
+	    );
+	}
+	</script>
+
+	<script>
+		function getPointsPosition(obj){
+			if(obj.length==1){
+				var position={'x':obj.attr('cx'),'y':obj.attr('cy')};
+				return position;
+			}
+		}
+
+		setPoints2($('.no2#control1'));
+		setPoints2($('.no2#control2'));
+		setPoints2($('.no2#control3'));
+		function setPoints2(obj){
+			var mouseDown=false;
+			obj.mousedown(function(){
+				mouseDown=true;
+			});
+			obj.parent().mouseup(function(){
+				mouseDown=false;
+			});
+			obj.parent().mousemove(function(e){
+				if(mouseDown){
+					obj.attr('cx',e.pageX-obj.parent().offset().left);
+					obj.attr('cy',e.pageY-obj.parent().offset().top);
+					setPolyline2();
+					setPath2();
+				}
+			});
+		}
+		function setPolyline2(){
+			var x1=getPointsPosition($('.no2#control1'));
+			var x2=getPointsPosition($('.no2#control2'));
+			var x3=getPointsPosition($('.no2#control3'));
+			var points=x1.x+','+x1.y+' '+x2.x+','+x2.y+' '+x3.x+','+x3.y;
+			$('.no2#polyline').attr('points',points);
+		}
+		function setPath2(){
+			var x1=getPointsPosition($('.no2#control1'));
+			var x2=getPointsPosition($('.no2#control2'));
+			var x3=getPointsPosition($('.no2#control3'));
+			var d='M'+x1.x+' '+x1.y+' Q'+x2.x+' '+x2.y+' '+x3.x+' '+x3.y;
+			$('.no2#path').attr('d',d);
+			$('.no2#text1').text(d);
+		}
+	</script>
+	</body>
+</html>			
