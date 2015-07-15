@@ -1,0 +1,14 @@
+html, body, div, p, h3{margin: 0;padding: 0;}
+html, body{width: 100%;height: 100%;}
+a{text-decoration: none;}
+.clearfix:after{content:' ';display: block;clear: both;height: 0;overflow: hidden;visibility: hidden;}
+.clearfix{zoom: 1;}
+button{margin-top: 10px;padding: 4px 5px;margin-left: 10px;font-size: 14px;}
+
+
+.u-img img{display: block;width: 100%;height: 100%;}
+.m-tw{width:350px;margin:10px;}
+.m-tw .txt{float:right;width:100%;height:95px;overflow:hidden;margin-left:-110px;}
+.m-tw h3,.m-tw p{margin-left:110px;overflow:hidden;line-height: 1.8;}
+.m-tw h3{margin-bottom:5px;}
+.m-tw .u-img{float:left;width: 94px;height: 94px;padding: 2px;border: 1px solid;}
